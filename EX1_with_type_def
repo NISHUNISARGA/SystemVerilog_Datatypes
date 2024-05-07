@@ -9,8 +9,7 @@ endclass
 
 module top;
   sample S=new();
-  ubyte B;
-  
+  ubyte B;  
   initial begin
     S.randomize();
     B = $random;
