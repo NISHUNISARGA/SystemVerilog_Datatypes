@@ -1,0 +1,15 @@
+typedef integer QDA_A[9:0][5][$:3];
+module top;
+QDA_A var;
+
+initial begin
+	for(int i = 0; i < 10; i++) begin
+		for(int j = 0; j < 5; j++ )begin
+			for(int k = 0; k < 3; k++)begin
+				var[i][j][k] = $urandom_range(1,100);
+			end
+		end
+	end
+  $display("\n array of dynamic array of queue = %p\n",var);
+end
+endmodule
