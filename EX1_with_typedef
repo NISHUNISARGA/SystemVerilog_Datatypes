@@ -1,0 +1,14 @@
+class sample;
+  typedef bit [7:0] ubyte;
+  rand ubyte A;
+  function void post_randomize();
+    $display("A=%p",A);
+  endfunction
+endclass
+
+module top;
+  sample S=new();
+  initial begin
+    S.randomize();
+  end
+endmodule
