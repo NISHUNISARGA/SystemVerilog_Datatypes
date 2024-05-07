@@ -1,24 +1,24 @@
 # <span style="color:yellow">**TYPEDEF**</span>
-In SystemVerilog, typedef is used to give a new name to an existing data type. This can be useful when you have a complex data type that is used in multiple places in your code.
+In SystemVerilog, typedef gives a new name to an existing data type. This can be useful when a complex data type is used in multiple places in your code.
 ---
 ## <span style="color:pink">Syntax:</span>
 
             typedef data_type new_name[Range];
 ---
 
-> NOTE: Few data types have inherent typedef means even though we don't declare them as typedef they will act as user defined datatype. 
+> NOTE: Few data types have inherent typedef means even though we don't declare them as typedef they will act as user-defined datatype. 
 
-    Example : class eth_pkt;
+    Example: class eth_pkt;
                 ...
               endclass
-     here class is not a data type but its a keyword.
+     here class is not a data type but it's a keyword.
 
      module top;
         eth_pkt pkt;
         ---
     endmodule
 
-    here eth_pkt behaves as user defined datatype. 
+    here eth_pkt behaves as user user-defined datatype. 
     pkt is a variable. 
 
 
@@ -30,7 +30,7 @@ In SystemVerilog, typedef is used to give a new name to an existing data type. T
         Example: instead of using bit [7:0] to declare an 8-bit vector
                  you can use typedef bit [7:0] ubyte;
 
-                now we can use ubyte whereever we wants to declare 8bit bit datatype
+                now we can use ubyte wherever we wants to declare 8bit bit datatype
 
                 class sample;           |       typedef bit [7:0] ubyte;
                     rand bit [7:0]A;    |       class sample;
@@ -40,17 +40,17 @@ In SystemVerilog, typedef is used to give a new name to an existing data type. T
 - <span style="color:orange">Increased maintainability:</span> If you need to change the definition of a complex data type, you only need to modify the typedef statement. Without typedef, you would need to find and modify every instance of the data type in your code.
     
         Example: typedef eth_pkt pktQ[$];
-        now pktQ will be act as datatype.
+        now pktQ will act as a datatype.
 - <span style="color:orange">Reduced errors:</span> By using typedef to define complex data types, you can reduce the risk of errors caused by using the wrong data type.
 - <span style="color:orange">Improved code reuse:</span> By defining complex data types with typedef, you can reuse them in multiple modules and packages.
 ---
 ### <span style="color:green">Example 1:</span>
 
     Declare array(size = 10) of dynamic array(size = 5) of queue of integers(3)
-    note : while normal declaring of variable: ->
-            if your using typedef: <-
+    note: while normal declaring of variable: ->
+            if you are using typedef: <-
 
-            according to question this multidimension can hold the integer value means datatype is int
+            according to question, this multidimensional array can hold the integer value means the datatype is int
 
             integer A[9:0][5][$:3];
 
@@ -81,7 +81,7 @@ In SystemVerilog, typedef is used to give a new name to an existing data type. T
     * consider two classes c1 and c2.
     * c2 is instantiated inside c1 and c1 inside c2. 
     * Both classes need the handle of each other.
-    * As execution will happen in sequential order. Dependency between both the classes leads to a compilation error.
+    * As execution will happen in sequential order. Dependency between both classes leads to a compilation error.
 
 `without typedef/forward declaration of class`
 
@@ -105,7 +105,7 @@ In SystemVerilog, typedef is used to give a new name to an existing data type. T
 
     OUTPUT :
                 ERROR VCP2000 "Syntax error. Unexpected token: c2[_IDENTIFIER]." "testbench.sv" 2  5
-                FAILURE "Compile failure 1 Errors 0 Warnings  Analysis time: 0[s]."
+                FAILURE "Compile failure 1 Error 0 Warnings  Analysis time: 0[s]."
 
 >The compilation error of the above example can be avoided by using a typedef.
 
