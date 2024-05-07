@@ -1,7 +1,7 @@
- typedef bit [7:0] ubyte;
+typedef bit [7:0] ubyte;
+
 class sample;
- 
-  rand ubyte A;
+ rand ubyte A;
   function void post_randomize();
     $display("A=%p",A);
   endfunction
