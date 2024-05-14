@@ -1,0 +1,28 @@
+typedef struct {
+            string name;
+            int price;
+            int quantity;   
+        } grocery_item_t;
+
+        module top;
+          grocery_item_t grocery_list[5];
+
+            int total_amount;
+
+            initial begin
+              grocery_list={{"Apple",2, 10},{"Banana", 1, 20},{"Orange", 3, 15},{"Milk", 5, 5},{"Bread", 4, 8}};
+                total_amount = 0;
+
+                // total price calculation
+              total_amount = grocery_list.sum() with (item.price*item.quantity);
+              $display("%p \n %d",grocery_list,total_amount);
+
+              // sorting on the basis of price
+              grocery_list.rsort() with (item.price*item.quantity);
+              $display("%p",grocery_list);
+
+              // sorting on the basis of quantity
+              grocery_list.rsort() with (item.quantity);
+              $display("%p",grocery_list);
+            end
+        endmodule
