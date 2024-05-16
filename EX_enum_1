@@ -1,0 +1,13 @@
+typedef enum{black, pink, green, yellow, blue, red}color;
+module top;
+  initial begin
+  	color color_t;
+    color_t = pink;
+    $display("color_value : %0d | color_name : %s",color_t,color_t.name());
+    $display("color_first : %0d ",color_t.first());
+    $display("color_last : %0d ",color_t.last());
+    $display("color_next : %0d ",color_t.next());
+    $display("color_prev : %0d ",color_t.prev());
+    $display("color_num : %0d ",color_t.num());
+  end
+endmodule
