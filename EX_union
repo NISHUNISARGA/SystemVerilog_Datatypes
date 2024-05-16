@@ -1,0 +1,43 @@
+// Code your testbench here
+// or browse Examples
+module student_records;
+
+typedef union {
+  longint name;
+    int marks;
+    real percentage;
+  int grade;
+} student_record_t;
+
+student_record_t students[30];
+
+initial begin
+  string name_t[30],grade_t[30];
+    for (int i = 0; i < 30; i++) begin
+      $sformat(name_t[i],"std_%0d",i+1);
+      //$display("%s",name_t);
+      //name_t = $sformatf("Student%0d",i+1);
+      students[i].name = longint'(name_t[i]);
+     $display("name=%0s",students[i].name);
+        students[i].marks = $urandom_range(0, 100);
+     $display(" Mark = %0d",students[i].marks);
+        students[i].percentage = (students[i].marks / 100.0) * 100;
+      $display("Percentage = %0d",students[i].percentage);
+        if (students[i].percentage >= 90) begin
+          grade_t[i] = "A";
+          students[i].grade=int'(grade_t[i]);
+        end else if (students[i].percentage >= 80) begin
+          grade_t[i] = "B";
+          students[i].grade=int'(grade_t[i]);
+        end else if (students[i].percentage >= 70) begin
+          grade_t[i] = "C";
+          students[i].grade=int'(grade_t[i]);
+        end else begin
+          grade_t[i] = "F";
+          students[i].grade=int'(grade_t[i]);
+        end
+       $display("grade=%0s",students[i].grade);
+    end
+ end
+
+endmodule
