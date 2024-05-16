@@ -1,0 +1,18 @@
+typedef enum bit[3:0]{SLAVE_1 = 4'b0001,
+                      SLAVE_2 = 4'b0010,
+                      SLAVE_3 = 4'b0100,
+                      SLAVE_4 = 4'b1000}APB_sel;
+module top;
+  initial begin
+  	APB_sel slave;
+    slave = 2 ;
+    $display("slave_name : %0s",slave.name());
+    
+    slave = APB_sel'(8);
+    $display("slave_name : %0s ",slave.name());
+    
+    if(slave == SLAVE_2 | slave == 8)
+      $display("APB now using %0s",slave.name());
+    
+  end
+endmodule
