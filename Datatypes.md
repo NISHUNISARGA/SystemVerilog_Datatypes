@@ -7,7 +7,7 @@
 - [STRUCT](#struct)
     * [StructSyntax](#structsyntax)
     * [Packed](#packed)
-    * [Unpacked](#unpacked)
+    * [Unpacked](#Unpacked)
 - [UNION](#union)
 ## **TYPEDEF**
 In SystemVerilog, typedef is used to give a new name to an existing data type. This can be useful when you have a complex data type that is used in multiple places in your code.
@@ -19,10 +19,10 @@ In SystemVerilog, typedef is used to give a new name to an existing data type. T
 
 > NOTE: Few data types have inherent typedef means even though we don't declare them as typedef they will act as user defined datatype. 
 
-    Example: class eth_pkt;
+    Example : class eth_pkt;
                 ...
               endclass
-     here class is not a data type but it's a keyword.
+     here class is not a data type but its a keyword.
 
      module top;
         eth_pkt pkt;
@@ -51,17 +51,17 @@ In SystemVerilog, typedef is used to give a new name to an existing data type. T
 - <span style="color:orange">Increased maintainability:</span> If you need to change the definition of a complex data type, you only need to modify the typedef statement. Without typedef, you would need to find and modify every instance of the data type in your code.
     
         Example: typedef eth_pkt pktQ[$];
-        now pktQ will act as a datatype.
+        now pktQ will be act as datatype.
 - <span style="color:orange">Reduced errors:</span> By using typedef to define complex data types, you can reduce the risk of errors caused by using the wrong data type.
 - <span style="color:orange">Improved code reuse:</span> By defining complex data types with typedef, you can reuse them in multiple modules and packages.
 ---
 ### <span style="color:green">Example 1:</span>
 
     Declare array(size = 10) of dynamic array(size = 5) of queue of integers(3)
-    Note: while normal declaring of variable: ->
-            if you're using typedef: <-
+    note : while normal declaring of variable: ->
+            if your using typedef: <-
 
-            according to question, this multidimensional can hold the integer value means the datatype is int
+            according to question this multidimension can hold the integer value means datatype is int
 
             integer A[9:0][5][$:3];
 
@@ -144,9 +144,9 @@ In SystemVerilog, typedef is used to give a new name to an existing data type. T
 
 ## **STRUCT**
 A struct is a collection of variables of different types into a single entity. 
-There are some requirements where you might need to keep track of different data types for large quantities.
-In the SPI controller, we have used the address register, data register and control register being declared as one register what if there is a requirement where we have a few more extra registers and need to declare all of them separately?
-In this kind of situation, we can use structure.
+There are some requirement where you might need to keep track different datatypes for large quantity.
+In SPI controller we have used address register, data register and control register being declared as one register what if theres a requirement where we have few more extra registers and need to declare all of them seperatly.
+At this kind of situtation we can use structure.
 ---
 ### StructSyntax:
 > WITHOUT TYPEDEF
@@ -197,7 +197,7 @@ Unpacked structures are stored in memory as separate variables, with each member
 
 > [click here to know more](<http://www.testbench.in/SV_07_STRUCTURES_AND_UNIOUNS.html>)
 ---
-### <span style="color:green">Example 1:</span>
+### **[Example](<https://github.com/NISHUNISARGA/SystemVerilog_Datatypes/blob/main/EX_struct>)**
 
          typedef struct {
             string name;
@@ -218,17 +218,17 @@ Unpacked structures are stored in memory as separate variables, with each member
               total_amount = grocery_list.sum() with (item.price*item.quantity);
               $display("%p \n %d",grocery_list,total_amount);
 
-              // sorting based on price
+              // sorting on the basis of price
               grocery_list.rsort() with (item.price*item.quantity);
               $display("%p",grocery_list);
 
-              // sorting based on quantity
+              // sorting on the basis of quantity
               grocery_list.rsort() with (item.quantity);
               $display("%p",grocery_list);
             end
         endmodule
 
-> <span style="color:yellow">Note:</span> class also groups the different datatypes variable into multiple entities. Still, class is a dynamic datatype where the structure is a static datatype and in structure, we can't write constraints, or methods(tasks and functions).
+> <span style="color:yellow">Note:</span> class also groups the different datatypes variable into multiple entity but class is a dynamic datatype where as structure is static datatype and in structure we can't write constraints, methods(tasks and fucntions).
  
  * To access the elements of the structure we have to use the '.'(XMR)
 
@@ -236,3 +236,19 @@ Unpacked structures are stored in memory as separate variables, with each member
              grocery_list.name = "APPLE";
              grocery_list.price = 30;
              grocery_list.quantity = 10;
+
+## **UNION**
+- Unions are similar to structures that can contain different data types members except they share the same memory location. Hence, it is memory efficient data structure. But it also restricts the user to use one member at a time.
+---
+![alt text](<Screenshot 2024-05-13 113454.png>)  ![alt text](<Screenshot 2024-05-13 113508.png>)
+---
+### UnionSyntax:
+    union <union_name> {
+            <data_type> <member_name_1>;
+            <data_type> <member_name_2>;
+            <data_type> <member_name_3>;
+            ...
+            <data_type> <member_name_n>;
+        }<union_name>;
+
+### **[Example](<https://github.com/NISHUNISARGA/SystemVerilog_Datatypes/blob/main/EX_union>)**
