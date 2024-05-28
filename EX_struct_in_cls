@@ -1,0 +1,20 @@
+class sample;
+  typedef struct {
+            string name;
+            int price;
+            int quantity;   
+        } grocery_item_t;
+  grocery_item_t grocery_list[5];
+  
+  function new();
+    grocery_list={{"Apple",2, 10},{"Banana", 1, 20},{"Orange", 3, 15},{"Milk", 5, 5},{"Bread", 4, 8}};
+  endfunction
+
+endclass
+
+        module top; 
+          sample s = new();
+           initial begin
+              $display("%p",s);
+                    end
+        endmodule
